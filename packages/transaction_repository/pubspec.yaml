@@ -1,0 +1,16 @@
+name: transaction_repository
+description: A repository that handles transaction requests.
+version: 1.0.0+1
+publish_to: none
+
+dependencies:
+  transaction_api:
+    path: ../transaction_api
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dev_dependencies:
+  coverage: ^1.1.0
+  mocktail: ^0.2.0
+  test: ^1.19.2
+  very_good_analysis: ^2.4.0

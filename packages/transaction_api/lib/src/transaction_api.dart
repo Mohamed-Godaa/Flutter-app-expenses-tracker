@@ -22,6 +22,7 @@ abstract class TransactionApi {
   Future<void> deleteTodo(String id);
 }
 
+/// Error thrown when no transaction is found with the given id.
 class TransactionNotFoundException implements Exception {
   @override
   String toString() {
