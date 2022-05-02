@@ -8,7 +8,7 @@ abstract class TransactionApi {
   const TransactionApi();
 
   ///Provides a [Stream] of all the [Transaction]s.
-  Stream<List<Transaction>> getTrabsactions();
+  Stream<List<Transaction>> getTransactions();
 
   /// Saves a [transaction].
   ///
@@ -22,4 +22,9 @@ abstract class TransactionApi {
   Future<void> deleteTodo(String id);
 }
 
-class TransactionNotFoundException implements Exception {}
+class TransactionNotFoundException implements Exception {
+  @override
+  String toString() {
+    return "Couldn't find any transactions with the given Id";
+  }
+}
