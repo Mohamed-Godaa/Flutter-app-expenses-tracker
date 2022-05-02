@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './transaction_List.dart';
 import './new_transaction.dart';
-import '../models/Transaction.dart';
+import '../models/transaction.dart';
 
 class UserTransactions extends StatefulWidget {
   @override
