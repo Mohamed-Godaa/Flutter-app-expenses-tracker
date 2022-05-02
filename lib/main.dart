@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
-import './models/Transaction.dart';
+import 'models/transaction.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
