@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transaction_repository/transaction_repository.dart';
+
+import '../transactions_view/transactions_view.dart';
 
 class HomePage extends StatelessWidget {
   // List<Transaction> get _recentTransactions {
@@ -47,13 +51,21 @@ class HomePage extends StatelessWidget {
                       mediaquery.padding.top -
                       myAppBar.preferredSize.height) *
                   0.7,
-              child: const Placeholder(color: Colors.purple),
+              child: BlocProvider(
+                create: (context) => TransactionViewBloc(
+                    transactionRepository:
+                        context.read<TransactionRepository>())
+                  ..add(
+                    const TransactionViewSubscriptionRequested(),
+                  ),
+                child: const TransactionsList(),
+              ),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {},
       ),
     );
