@@ -8,9 +8,9 @@ class ChartBar extends StatelessWidget {
   final double spentAmountPercentage;
 
   const ChartBar({
-    this.label,
-    this.spentAmount,
-    this.spentAmountPercentage,
+    required this.label,
+    required this.spentAmount,
+    required this.spentAmountPercentage,
   });
 
   @override

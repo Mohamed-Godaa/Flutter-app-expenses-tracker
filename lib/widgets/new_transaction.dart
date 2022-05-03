@@ -15,7 +15,7 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final titleControler = TextEditingController();
   final amountControler = TextEditingController();
-  DateTime _datePicked;
+  DateTime? _datePicked;
 
   void submitData() {
     var theTitle = titleControler.text;
@@ -75,7 +75,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 children: [
                   Text(_datePicked == null
                       ? 'No date chosen'
-                      : '${DateFormat.yMd().format(_datePicked)}'),
+                      : '${DateFormat.yMd().format(_datePicked as DateTime)}'),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
                     onPressed: _presentDatePicker,
@@ -90,7 +90,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 'Add transaction',
               ),
               color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).textTheme.button.color,
+              textColor: Theme.of(context).textTheme.button?.color,
             )
           ]),
         ),
