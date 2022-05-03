@@ -37,7 +37,7 @@ class Transaction extends Equatable {
   /// The unique identifier of the transaction.
   ///
   /// Cannot be empty.
-  final String? id;
+  final String id;
 
   ///The title of the transaction
   ///

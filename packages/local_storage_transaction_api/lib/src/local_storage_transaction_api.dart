@@ -47,7 +47,7 @@ class LocalStorageTransactionApi extends TransactionApi {
       _transactionsStraemController.asBroadcastStream();
 
   @override
-  Future<void> deleteTodo(String id) {
+  Future<void> deleteTransaction(String id) {
     final transactions = [..._transactionsStraemController.value];
     final index = transactions.indexWhere((e) => e.id == id);
     if (index == -1) {
@@ -61,7 +61,7 @@ class LocalStorageTransactionApi extends TransactionApi {
   }
 
   @override
-  Future<void> saveTodo(Transaction transaction) {
+  Future<void> saveTransaction(Transaction transaction) {
     final transactions = [..._transactionsStraemController.value];
     final index = transactions.indexWhere((e) => e.id == transaction.id);
     if (index >= 0) {

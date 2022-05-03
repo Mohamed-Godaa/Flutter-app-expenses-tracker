@@ -13,13 +13,13 @@ abstract class TransactionApi {
   /// Saves a [transaction].
   ///
   /// If a [transaction] with the same id already exists, it will be replaced.
-  Future<void> saveTodo(Transaction transaction);
+  Future<void> saveTransaction(Transaction transaction);
 
   /// Deletes the todo with the given id.
   ///
   /// If no todo with the given id exists, a [TransactionNotFoundException]
   /// error is thrown.
-  Future<void> deleteTodo(String id);
+  Future<void> deleteTransaction(String id);
 }
 
 /// Error thrown when no transaction is found with the given id.

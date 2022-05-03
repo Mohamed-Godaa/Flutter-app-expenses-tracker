@@ -23,9 +23,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaquery = MediaQuery.of(context);
-    final AppBar myAppBar = AppBar(title: Text('Personal Expenses'), actions: [
+    final AppBar myAppBar =
+        AppBar(title: const Text('Personal Expenses'), actions: [
       IconButton(
-        icon: Icon(Icons.add),
+        icon: const Icon(Icons.add),
         onPressed: () {},
       ),
     ]);

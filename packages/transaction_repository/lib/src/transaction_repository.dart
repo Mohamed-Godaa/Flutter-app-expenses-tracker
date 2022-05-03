@@ -17,12 +17,13 @@ class TransactionRepository {
   /// Saves a [transaction].
   ///
   /// If a [transaction] with the same id already exists, it will be replaced.
-  Future<void> saveTodo(Transaction transaction) =>
-      _transactionApi.saveTodo(transaction);
+  Future<void> saveTransaction(Transaction transaction) =>
+      _transactionApi.saveTransaction(transaction);
 
   /// Deletes the todo with the given id.
   ///
   /// If no todo with the given id exists, a [TransactionNotFoundException]
   /// error is thrown.
-  Future<void> deleteTodo(String id) => _transactionApi.deleteTodo(id);
+  Future<void> deleteTransaction(String id) =>
+      _transactionApi.deleteTransaction(id);
 }
