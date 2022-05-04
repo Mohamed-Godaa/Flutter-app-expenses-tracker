@@ -26,8 +26,8 @@ class Transaction extends Equatable {
   Transaction({
     String? id,
     required this.title,
-    required this.amount,
-    required this.date,
+    this.amount = 0.0,
+    this.date,
   })  : assert(
           id == null || id.isNotEmpty,
           'id can not be null and should be empty',
@@ -37,7 +37,7 @@ class Transaction extends Equatable {
   /// The unique identifier of the transaction.
   ///
   /// Cannot be empty.
-  final String id;
+  final String? id;
 
   ///The title of the transaction
   ///
@@ -52,7 +52,7 @@ class Transaction extends Equatable {
   ///The date of the transaction
   ///
   ///cannot be empty
-  final DateTime date;
+  final DateTime? date;
 
   ///Returns a copy of this transaction with the given values updated.
   Transaction copyWith({

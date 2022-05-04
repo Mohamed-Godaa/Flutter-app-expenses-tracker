@@ -1,7 +1,10 @@
+import 'package:expenses_tracker/edit_transaction/bloc/edit_transaction_bloc.dart';
+import 'package:expenses_tracker/edit_transaction/view/view.dart';
 import 'package:expenses_tracker/transactions_view/transactions_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 class TransactionsList extends StatelessWidget {
   const TransactionsList();
@@ -85,34 +88,50 @@ class TransactionsList extends StatelessWidget {
               return Card(
                 elevation: 2,
                 child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.all(6),
-                        child: FittedBox(
-                          child: Text(
-                            '\$ ${transactions[index].amount}',
-                          ),
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6),
+                      child: FittedBox(
+                        child: Text(
+                          '\$ ${transactions[index].amount}',
                         ),
                       ),
                     ),
-                    title: Text(
-                      transactions[index].title,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    subtitle: Text(
-                      DateFormat.yMMMMd().format(transactions[index].date),
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {
-                        context.read<TransactionViewBloc>().add(
-                              TransactionViewTransactionDeleted(
-                                  transactions[index]),
-                            );
+                  ),
+                  title: Text(
+                    transactions[index].title,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  subtitle: Text(
+                    DateFormat.yMMMMd().format(transactions[index].date!),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      context.read<TransactionViewBloc>().add(
+                            TransactionViewTransactionDeleted(
+                                transactions[index]),
+                          );
+                    },
+                    icon: const Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                  ),
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return BlocProvider(
+                          create: (context) => EditTransactionBloc(
+                              initialTransaction: transactions[index],
+                              transactionRepository:
+                                  context.read<TransactionRepository>()),
+                          child: EditTransaction(
+                              initialTransaction: transactions[index]),
+                        );
                       },
-                      icon: const Icon(Icons.delete),
-                      color: Theme.of(context).errorColor,
-                    )),
+                    );
+                  },
+                ),
               );
             },
           );

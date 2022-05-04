@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
+import '../edit_transaction/bloc/edit_transaction_bloc.dart';
+import '../edit_transaction/view/view.dart';
 import '../transactions_view/transactions_view.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,15 +15,6 @@ class HomePage extends StatelessWidget {
   //       ),
   //     );
   //   }).toList();
-  // }
-
-  // void StartAddNewTransaction(BuildContext context) {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (_) {
-  //       return NewTransaction(addNewTransaction);
-  //     },
-  //   );
   // }
 
   @override
@@ -39,14 +32,14 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: (mediaquery.size.height -
-                      mediaquery.padding.top -
-                      myAppBar.preferredSize.height) *
-                  0.3,
-              child: const Placeholder(color: Colors.deepPurple),
-            ),
-            Container(
+            // SizedBox(
+            //   height: (mediaquery.size.height -
+            //           mediaquery.padding.top -
+            //           myAppBar.preferredSize.height) *
+            //       0.3,
+            //   child: const Placeholder(color: Colors.deepPurple),
+            // ),
+            SizedBox(
               height: (mediaquery.size.height -
                       mediaquery.padding.top -
                       myAppBar.preferredSize.height) *
@@ -66,7 +59,19 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (_) {
+              return BlocProvider(
+                create: (context) => EditTransactionBloc(
+                    transactionRepository:
+                        context.read<TransactionRepository>()),
+                child: const EditTransaction(),
+              );
+            },
+          );
+        },
       ),
     );
   }

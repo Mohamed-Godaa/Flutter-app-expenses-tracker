@@ -43,7 +43,7 @@ class TransactionViewBloc
     Emitter<TransactionViewState> emit,
   ) async {
     emit(state.copyWith(lastDeletedTransaction: () => event.transaction));
-    await _transactionRepository.deleteTransaction(event.transaction.id);
+    await _transactionRepository.deleteTransaction(event.transaction.id!);
   }
 
   Future<void> _onUndoDeletionRequested(
