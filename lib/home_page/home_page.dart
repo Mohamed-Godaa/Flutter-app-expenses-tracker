@@ -4,18 +4,11 @@ import 'package:transaction_repository/transaction_repository.dart';
 
 import '../edit_transaction/bloc/edit_transaction_bloc.dart';
 import '../edit_transaction/view/view.dart';
+import '../stats/view/view.dart';
 import '../transactions_view/transactions_view.dart';
 
 class HomePage extends StatelessWidget {
-  // List<Transaction> get _recentTransactions {
-  //   return transactions.where((element) {
-  //     return element.date.isAfter(
-  //       DateTime.now().subtract(
-  //         Duration(days: 7),
-  //       ),
-  //     );
-  //   }).toList();
-  // }
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +25,13 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // SizedBox(
-            //   height: (mediaquery.size.height -
-            //           mediaquery.padding.top -
-            //           myAppBar.preferredSize.height) *
-            //       0.3,
-            //   child: const Placeholder(color: Colors.deepPurple),
-            // ),
+            SizedBox(
+              height: (mediaquery.size.height -
+                      mediaquery.padding.top -
+                      myAppBar.preferredSize.height) *
+                  0.3,
+              child: const StatsChart(),
+            ),
             SizedBox(
               height: (mediaquery.size.height -
                       mediaquery.padding.top -

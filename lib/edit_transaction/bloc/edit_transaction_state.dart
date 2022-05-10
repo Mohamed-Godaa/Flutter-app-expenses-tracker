@@ -2,6 +2,13 @@ part of 'edit_transaction_bloc.dart';
 
 enum EditTransactionStatus { initial, success, loading, failure }
 
+extension EditTransactionStatusy on EditTransactionStatus {
+  bool get isLoadingOrSuccess => [
+        EditTransactionStatus.loading,
+        EditTransactionStatus.success,
+      ].contains(this);
+}
+
 class EditTransactionState extends Equatable {
   const EditTransactionState({
     this.status = EditTransactionStatus.initial,

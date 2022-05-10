@@ -1,11 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:expenses_tracker/edit_transaction/bloc/edit_transaction_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:transaction_api/transaction_api.dart';
 import 'package:transaction_repository/transaction_repository.dart';
+import 'package:expenses_tracker/edit_transaction/edit_transaction.dart';
 
 class EditTransaction extends StatelessWidget {
   const EditTransaction({
@@ -18,6 +18,7 @@ class EditTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<EditTransactionBloc>();
+    final status = bloc.state.status;
     final isNewTransaction = bloc.state.isNewTransaction;
     final state = context.watch<EditTransactionBloc>().state;
     final date = state.date ?? initialTransaction?.date;
@@ -87,14 +88,24 @@ class EditTransaction extends StatelessWidget {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: () {
-                    bloc.add(const EditTransactionSubmitted());
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    isNewTransaction ? 'Add transaction' : 'Update transaction',
-                  ),
-                  color: Theme.of(context).primaryColor,
+                  onPressed: status.isLoadingOrSuccess
+                      ? null
+                      : () {
+                          bloc.add(const EditTransactionSubmitted());
+                          Navigator.of(context).pop();
+                        },
+                  child: status.isLoadingOrSuccess
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Text(
+                          isNewTransaction
+                              ? 'Add transaction'
+                              : 'Update transaction',
+                        ),
+                  color: status.isLoadingOrSuccess
+                      ? Theme.of(context).primaryColor.withOpacity(0.5)
+                      : Theme.of(context).primaryColor,
                   textColor: Theme.of(context).textTheme.button?.color,
                 )
               ]),

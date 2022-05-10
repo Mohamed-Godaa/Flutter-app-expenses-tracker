@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
-import 'home page/home.dart';
+import 'home_page/home.dart';
 
 class App extends StatelessWidget {
   const App({

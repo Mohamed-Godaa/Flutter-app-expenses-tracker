@@ -63,21 +63,23 @@ class TransactionsList extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state.status == TransactionViewStatus.success) {
-              return Column(
-                children: [
-                  Text(
-                    'No transactions added yet',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Container(
-                    height: 200,
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Image.asset(
-                      'assets/images/waiting.png',
-                      fit: BoxFit.cover,
+              return Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'No transactions added yet',
+                      style: Theme.of(context).textTheme.headline6,
                     ),
-                  )
-                ],
+                    Container(
+                      height: 200,
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Image.asset(
+                        'assets/images/waiting.png',
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  ],
+                ),
               );
             }
           }
